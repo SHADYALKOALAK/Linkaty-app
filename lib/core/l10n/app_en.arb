@@ -41,5 +41,7 @@
   "forgot_password": "Forgot password",
   "enter_your_email_address_and_we_will_send_you_a_link_to_reset_your_password": "Enter your email address and we will send you a link to reset your password",
   "send_link": "Send Link",
-  "a_password_reset_link_has_been_sent_to_your_email_successfully": "A password reset link has been sent to your email successfully"
+  "a_password_reset_link_has_been_sent_to_your_email_successfully": "A password reset link has been sent to your email successfully",
+  "projects": "Projects",
+  "links": "Links"
 }

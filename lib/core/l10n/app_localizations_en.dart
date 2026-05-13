@@ -147,4 +147,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get a_password_reset_link_has_been_sent_to_your_email_successfully =>
       'A password reset link has been sent to your email successfully';
+
+  @override
+  String get projects => 'Projects';
+
+  @override
+  String get links => 'Links';
 }

@@ -356,6 +356,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح'**
   String get a_password_reset_link_has_been_sent_to_your_email_successfully;
+
+  /// No description provided for @projects.
+  ///
+  /// In ar, this message translates to:
+  /// **'المشاريع'**
+  String get projects;
+
+  /// No description provided for @links.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللينكات'**
+  String get links;
 }
 
 class _AppLocalizationsDelegate

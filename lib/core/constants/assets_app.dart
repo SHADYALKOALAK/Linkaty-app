@@ -14,7 +14,8 @@ class AssetsApp {
   static const String homeSmileBold = 'assets/icons/home_smile_bold.svg';
   static const String homeSmileOutline = 'assets/icons/home_smile_outline.svg';
   static const String userRoundedBold = 'assets/icons/user_rounded_bold.svg';
-  static const String userRoundedOutline = 'assets/icons/user_rounded_outline.svg';
+  static const String userRoundedOutline =
+      'assets/icons/user_rounded_outline.svg';
   static const String patternsApp = 'assets/icons/patterns_app.svg';
   static const String searchIcon = 'assets/icons/search_icon.svg';
   static const String profileImage = 'assets/images/default_image_profile.png';
@@ -23,4 +24,8 @@ class AssetsApp {
   static const String avatar = 'assets/images/avitar.png';
   static const String backButton = 'assets/icons/back_button.svg';
   static const String search = 'assets/icons/search.svg';
+  static const String headerImageProfile = 'assets/images/header_image_profile.png';
+  static const String shareIcon = 'assets/icons/share_icon.svg';
+  static const String editIcon = 'assets/icons/edit_icon.svg';
+  static const String clockIcon = 'assets/icons/clock_icon.svg';
 }

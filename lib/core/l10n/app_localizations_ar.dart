@@ -146,4 +146,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get a_password_reset_link_has_been_sent_to_your_email_successfully =>
       'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح';
+
+  @override
+  String get projects => 'المشاريع';
+
+  @override
+  String get links => 'اللينكات';
 }

@@ -41,5 +41,7 @@
   "forgot_password": "نسيت كلمة المرور",
   "enter_your_email_address_and_we_will_send_you_a_link_to_reset_your_password": "أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور",
   "send_link": "إرسال الرابط",
-  "a_password_reset_link_has_been_sent_to_your_email_successfully": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح"
+  "a_password_reset_link_has_been_sent_to_your_email_successfully": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني بنجاح",
+  "projects": "المشاريع",
+  "links": "اللينكات"
 }

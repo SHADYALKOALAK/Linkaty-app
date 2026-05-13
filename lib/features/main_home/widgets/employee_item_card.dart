@@ -6,6 +6,7 @@ import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
+import 'package:linkaty/features/main_home/widgets/location_badge.dart';
 
 class EmployeeItemCard extends StatefulWidget {
   final String employeeImage;
@@ -73,33 +74,7 @@ class _EmployeeItemCardState extends State<EmployeeItemCard> {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Container(
-                      height: 32.h,
-                      padding: EdgeInsetsDirectional.symmetric(
-                        vertical: 4.h,
-                        horizontal: 12.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.r),
-                        color: AppColors.primaryLight.withOpacity(.5),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CustomSvg(path: AssetsApp.map),
-
-                          CustomWidthSpacer(width: 4),
-
-                          Text(
-                            widget.employeeLocation,
-                            style: getMediumStyle(
-                              size: 14,
-                              color: AppColors.primaryNormal,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    LocationBadge(location: widget.employeeLocation),
                   ],
                 ),
                 CustomHeightSpacer(height: 4),
