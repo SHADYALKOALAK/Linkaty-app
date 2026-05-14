@@ -32,20 +32,30 @@ class UserService {
     }
   }
 
-  Future<List<UserModel>> getAllUsers() async {
+  /// Get a user by email.
+  Future<UserModel> getUserByEmail({required String email}) async {
     try {
-      final data = await _supabase
+      final response = await _supabase
           .from(_tableName)
-          .select();
+          .select()
+          .eq('email', email)
+          .single();
 
-      return data
-          .map<UserModel>((e) => UserModel.fromJson(e))
-          .toList();
+      return UserModel.fromJson(response);
     } catch (e) {
-      print('Error getting users: $e');
+      print('Error getting user by id: $e');
       rethrow;
     }
   }
+
+  Stream<List<UserModel>> getAllUsers() {
+    return _supabase
+        .from(_tableName)
+        .stream(primaryKey: ['id'])
+        .map((data) =>
+        data.map((e) => UserModel.fromJson(e)).toList());
+  }
+
 
   /// Update user
   Future<bool> updateUser(UserModel user) async {
@@ -70,6 +80,22 @@ class UserService {
     } catch (e) {
       print('Error deleting user: $e');
       return false;
+    }
+  }
+  /// Get all users once
+  Future<List<UserModel>> getAllUsersOnce() async {
+    try {
+      final response = await _supabase
+          .from(_tableName)
+          .select();
+
+      return response
+          .map<UserModel>((e) => UserModel.fromJson(e))
+          .toList();
+
+    } catch (e) {
+      print('Error getting all users: $e');
+      rethrow;
     }
   }
 

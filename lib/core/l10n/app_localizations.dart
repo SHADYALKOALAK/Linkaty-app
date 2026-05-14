@@ -368,6 +368,144 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'اللينكات'**
   String get links;
+
+  /// No description provided for @no_people_to_show.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد أشخاص لعرضهم'**
+  String get no_people_to_show;
+
+  /// No description provided for @user_profiles_will_appear_here_once_they_become_available.
+  ///
+  /// In ar, this message translates to:
+  /// **'سيتم عرض الملفات الشخصية هنا عندما تتوفر بيانات جديدة'**
+  String get user_profiles_will_appear_here_once_they_become_available;
+
+  /// No description provided for @something_went_wrong.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدث خطأ أثناء جلب البيانات'**
+  String get something_went_wrong;
+
+  /// No description provided for @please_check_your_internet_connection_and_try_again.
+  ///
+  /// In ar, this message translates to:
+  /// **'يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى'**
+  String get please_check_your_internet_connection_and_try_again;
+
+  /// No description provided for @data_updated_successfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تحديث البيانات بنجاح'**
+  String get data_updated_successfully;
+
+  /// No description provided for @account_settings.
+  ///
+  /// In ar, this message translates to:
+  /// **'إعدادات الحساب'**
+  String get account_settings;
+
+  /// No description provided for @account.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحساب'**
+  String get account;
+
+  /// No description provided for @edit_my_data_profile.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل بياناتي الشخصية'**
+  String get edit_my_data_profile;
+
+  /// No description provided for @my_posts.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركاتي'**
+  String get my_posts;
+
+  /// No description provided for @my_projects.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاريعي'**
+  String get my_projects;
+
+  /// No description provided for @my_links.
+  ///
+  /// In ar, this message translates to:
+  /// **'لينكاتي'**
+  String get my_links;
+
+  /// No description provided for @language.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللغة'**
+  String get language;
+
+  /// No description provided for @logout.
+  ///
+  /// In ar, this message translates to:
+  /// **'تسجيل خروج'**
+  String get logout;
+
+  /// No description provided for @delete_account.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف الحساب'**
+  String get delete_account;
+
+  /// No description provided for @logout_confirmation.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد أنك تريد تسجيل الخروج؟'**
+  String get logout_confirmation;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء'**
+  String get cancel;
+
+  /// No description provided for @exit.
+  ///
+  /// In ar, this message translates to:
+  /// **'خروج'**
+  String get exit;
+
+  /// No description provided for @country.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدولة'**
+  String get country;
+
+  /// No description provided for @specialization.
+  ///
+  /// In ar, this message translates to:
+  /// **'التخصص'**
+  String get specialization;
+
+  /// No description provided for @permanent_type.
+  ///
+  /// In ar, this message translates to:
+  /// **'نوع الدوام'**
+  String get permanent_type;
+
+  /// No description provided for @bio.
+  ///
+  /// In ar, this message translates to:
+  /// **'البيو'**
+  String get bio;
+
+  /// No description provided for @save.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفظ'**
+  String get save;
+
+  /// No description provided for @enter_the_your_contry.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال دولتك'**
+  String get enter_the_your_contry;
 }
 
 class _AppLocalizationsDelegate

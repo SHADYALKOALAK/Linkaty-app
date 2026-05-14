@@ -18,6 +18,7 @@ import 'package:linkaty/core/widgets/my_lable_text_fild.dart';
 import 'package:linkaty/features/auth/models/user_model.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/auth/services/auth_service.dart';
+import 'package:linkaty/features/auth/services/user_service.dart';
 import 'package:linkaty/features/auth/views/reset_password_screen.dart';
 import 'package:linkaty/features/auth/views/sign_up_screen.dart';
 import 'package:linkaty/features/auth/widgets/auth_heder_section.dart';
@@ -219,7 +220,6 @@ class _LoginScreenState extends State<LoginScreen>
 
   Future<void> signIn(AppLocalizations localizations) async {
     if (!_checkDataForm(localizations)) return;
-
     setState(() => _isLoading = true);
 
     try {
@@ -227,7 +227,10 @@ class _LoginScreenState extends State<LoginScreen>
       final password = _passwordController.text;
 
       final AuthResponse userResponse = await AuthService()
-          .signInWithEmailAndPassword(email: email, password: password);
+          .signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       if (userResponse.session == null) {
         throw Exception('Auth Error');
@@ -236,20 +239,29 @@ class _LoginScreenState extends State<LoginScreen>
       await AppPreferences().setter(CacheKeys.loggedIn, true);
       await AppPreferences().setter(CacheKeys.email, email);
 
-      final user = userResponse.user;
+      //  get full user for provider
+      final fullUser = await UserService().getUserByEmail(email: email);
 
       if (context.mounted) {
         Provider.of<AuthProvider>(
           context,
           listen: false,
-        ).setUser(UserModel(id: user?.id, email: user?.email));
-
+        ).setUser(fullUser);
+        showSnackBar(
+          context,
+          localizations.login_success,
+          AppColors.success,
+        );
         jump(context, MainHomeScreen(), true);
-
-        showSnackBar(context, localizations.login_success, AppColors.success);
       }
     } catch (e) {
-      showSnackBar(context, _mapAuthError(e, localizations), AppColors.error);
+      if (context.mounted) {
+        showSnackBar(
+          context,
+          _mapAuthError(e, localizations),
+          AppColors.error,
+        );
+      }
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

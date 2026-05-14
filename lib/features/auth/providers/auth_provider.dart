@@ -16,5 +16,6 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
   bool get isLoggedIn => _user != null;
 }

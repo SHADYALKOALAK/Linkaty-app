@@ -28,4 +28,13 @@ class AssetsApp {
   static const String shareIcon = 'assets/icons/share_icon.svg';
   static const String editIcon = 'assets/icons/edit_icon.svg';
   static const String clockIcon = 'assets/icons/clock_icon.svg';
+  static const String shareProject = 'assets/icons/share_project.svg';
+  static const String noData = 'assets/icons/no_data.svg';
+  static const String settings = 'assets/icons/settings.svg';
+  static const String userProfile = 'assets/icons/user_profile.svg';
+  static const String grid = 'assets/icons/grid.svg';
+  static const String links = 'assets/icons/links.svg';
+  static const String language = 'assets/icons/language.svg';
+  static const String logout = 'assets/icons/logout.svg';
+  static const String delete = 'assets/icons/delete.svg';
 }

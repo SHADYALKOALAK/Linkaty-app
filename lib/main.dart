@@ -8,6 +8,7 @@ import 'package:linkaty/core/services/providers/language_provider.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/get_started/views/splash_screen.dart';
+import 'package:linkaty/features/main_home/providers/users_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(create: (context) => LanguageProvider()),
             ChangeNotifierProvider(create: (context) => AuthProvider()),
+            ChangeNotifierProvider(create: (context) => UsersProvider()),
           ],
           child: const MyMaterialApp(),
         );
@@ -60,18 +62,23 @@ class MyMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'ibmPlexSansArabic',
-        primaryColor: AppColors.primaryNormal,
-        splashColor: Colors.transparent,
-        scaffoldBackgroundColor: Colors.white,
-        highlightColor: Colors.transparent,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: const [Locale('ar'), Locale('en')],
+    return Consumer<LanguageProvider>(
+      builder: (context, lang, child) {
+        return MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'ibmPlexSansArabic',
+            primaryColor: AppColors.primaryNormal,
+            splashColor: Colors.transparent,
+            scaffoldBackgroundColor: Colors.white,
+            highlightColor: Colors.transparent,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
+          locale: Locale(lang.language),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: const [Locale('ar'), Locale('en')],
+        );
+      },
     );
   }
 }

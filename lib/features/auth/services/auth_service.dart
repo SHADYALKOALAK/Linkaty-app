@@ -1,3 +1,4 @@
+import 'package:linkaty/features/auth/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
@@ -34,18 +35,6 @@ class AuthService {
     } catch (e) {
       rethrow;
     }
-  }
-
-  User? getCurrentUser() {
-    return _supabase.auth.currentUser;
-  }
-
-  String? getCurrentUserEmail() {
-    return _supabase.auth.currentUser?.email;
-  }
-
-  String? getCurrentUserId() {
-    return _supabase.auth.currentUser?.id;
   }
 
   /// reset password by send link

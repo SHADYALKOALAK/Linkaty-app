@@ -152,4 +152,75 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get links => 'اللينكات';
+
+  @override
+  String get no_people_to_show => 'لا يوجد أشخاص لعرضهم';
+
+  @override
+  String get user_profiles_will_appear_here_once_they_become_available =>
+      'سيتم عرض الملفات الشخصية هنا عندما تتوفر بيانات جديدة';
+
+  @override
+  String get something_went_wrong => 'حدث خطأ أثناء جلب البيانات';
+
+  @override
+  String get please_check_your_internet_connection_and_try_again =>
+      'يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى';
+
+  @override
+  String get data_updated_successfully => 'تم تحديث البيانات بنجاح';
+
+  @override
+  String get account_settings => 'إعدادات الحساب';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get edit_my_data_profile => 'تعديل بياناتي الشخصية';
+
+  @override
+  String get my_posts => 'مشاركاتي';
+
+  @override
+  String get my_projects => 'مشاريعي';
+
+  @override
+  String get my_links => 'لينكاتي';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get logout => 'تسجيل خروج';
+
+  @override
+  String get delete_account => 'حذف الحساب';
+
+  @override
+  String get logout_confirmation => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get exit => 'خروج';
+
+  @override
+  String get country => 'الدولة';
+
+  @override
+  String get specialization => 'التخصص';
+
+  @override
+  String get permanent_type => 'نوع الدوام';
+
+  @override
+  String get bio => 'البيو';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get enter_the_your_contry => 'الرجاء إدخال دولتك';
 }

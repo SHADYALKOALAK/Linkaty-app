@@ -153,4 +153,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get links => 'Links';
+
+  @override
+  String get no_people_to_show => 'There are no people to show them';
+
+  @override
+  String get user_profiles_will_appear_here_once_they_become_available =>
+      'Profiles will be displayed here when new data becomes available.';
+
+  @override
+  String get something_went_wrong => 'An error occurred while retrieving data.';
+
+  @override
+  String get please_check_your_internet_connection_and_try_again =>
+      'Please check your internet connection and try again.';
+
+  @override
+  String get data_updated_successfully => 'Data updated successfully';
+
+  @override
+  String get account_settings => 'Account Settings';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get edit_my_data_profile => 'Edit my personal data';
+
+  @override
+  String get my_posts => 'My Posts';
+
+  @override
+  String get my_projects => 'My Projects';
+
+  @override
+  String get my_links => 'My Links';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get delete_account => 'Delete Account';
+
+  @override
+  String get logout_confirmation => 'Are you sure you want to log out?';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get specialization => 'Specialization';
+
+  @override
+  String get permanent_type => 'Permanent Type';
+
+  @override
+  String get bio => 'Bio';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get enter_the_your_contry => 'Please enter your country';
 }

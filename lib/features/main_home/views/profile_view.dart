@@ -2,15 +2,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
+import 'package:linkaty/core/helpers/nav_helper.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
+import 'package:linkaty/features/auth/providers/auth_provider.dart';
+import 'package:linkaty/features/auth/services/auth_service.dart';
+import 'package:linkaty/features/main_home/views/settings_screen.dart';
 import 'package:linkaty/features/main_home/widgets/links_list.dart';
 import 'package:linkaty/features/main_home/widgets/location_badge.dart';
 import 'package:linkaty/features/main_home/widgets/projects_list.dart';
+import 'package:provider/provider.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -19,7 +24,7 @@ class ProfileView extends StatefulWidget {
   State<ProfileView> createState() => _ProfileViewState();
 }
 
-class _ProfileViewState extends State<ProfileView> {
+class _ProfileViewState extends State<ProfileView> with NavHelper {
   int selectedTab = 0;
 
   @override
@@ -60,17 +65,18 @@ class _ProfileViewState extends State<ProfileView> {
                 end: 24.w,
                 child: Row(
                   children: [
+                    _buildActionIcon(
+                      icon: AssetsApp.settings,
+                      onTap: () => jump(context, SettingsScreen(), false),
+                    ),
+                    CustomWidthSpacer(width: 16),
                     _buildActionIcon(icon: AssetsApp.shareIcon, onTap: () {}),
-                    SizedBox(width: 16.w),
-                    _buildActionIcon(icon: AssetsApp.editIcon, onTap: () {}),
                   ],
                 ),
               ),
             ],
           ),
-          Expanded(
-            child: _buildContentProfile(localizations),
-          ),
+          Expanded(child: _buildContentProfile(localizations)),
         ],
       ),
     );
@@ -99,59 +105,64 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Widget _buildContentProfile(AppLocalizations localizations) {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(
-        top: 45.w + 16.h,
-        start: 24.w,
-        end: 24.w,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return Consumer<AuthProvider>(
+      builder: (context, auth, child) {
+        return Padding(
+          padding: EdgeInsetsDirectional.only(
+            top: 45.w + 16.h,
+            start: 24.w,
+            end: 24.w,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'سعيد بن محمد ال راشد',
-                style: getBoldStyle(size: 18, color: AppColors.primaryNormal),
+              Row(
+                children: [
+                  Text(
+                    auth.user?.fullName ?? '',
+                    style: getBoldStyle(
+                      size: 18,
+                      color: AppColors.primaryNormal,
+                    ),
+                  ),
+                  const Spacer(),
+                  LocationBadge(location: auth.user?.location ?? ''),
+                ],
               ),
-              const Spacer(),
-              const LocationBadge(location: 'السعودية'),
+
+              SizedBox(height: 8.h),
+
+              _buildInfoRow(
+                title: auth.user?.specialization ?? 'لم تحدد بعد',
+                icon: AssetsApp.emploeyBag,
+              ),
+              CustomHeightSpacer(height: 8),
+              _buildInfoRow(
+                title: auth.user?.typeOfJop ?? 'لم تحدد بعد',
+                icon: AssetsApp.clockIcon,
+              ),
+              CustomHeightSpacer(height: 8),
+              Text(
+                auth.user?.bio ?? 'لا يوجد نبذة تعريفية',
+                style: getRegularStyle(size: 14, color: AppColors.font01),
+              ),
+
+              Divider(
+                height: 24.h,
+                thickness: 1.h,
+                color: AppColors.border01.withOpacity(.5),
+              ),
+
+              _buildTapsProfile(localizations),
+              CustomHeightSpacer(height: 24),
+              Expanded(
+                child:
+                    selectedTab == 0 ? const ProjectsList() : const LinksList(),
+              ),
             ],
           ),
-
-          SizedBox(height: 8.h),
-
-          _buildInfoRow(
-            title: 'UX / UI Designer',
-            icon: AssetsApp.emploeyBag,
-          ),
-          _buildInfoRow(
-            title: 'دوام كامل',
-            icon: AssetsApp.clockIcon,
-          ),
-
-          SizedBox(height: 8.h),
-
-          Text(
-            'مصمم واجهات مستخدم أعمل على تصميم تجارب رقمية عصرية وسهلة الاستخدام تجمع بين الجمال والبساطة.',
-            style: getRegularStyle(size: 14, color: AppColors.font01),
-          ),
-
-          Divider(
-            height: 24.h,
-            thickness: 1.h,
-            color: AppColors.border01.withOpacity(.5),
-          ),
-
-          _buildTapsProfile(localizations),
-          CustomHeightSpacer(height: 24),
-          Expanded(
-            child: selectedTab == 0
-                ? const ProjectsList()
-                : const LinksList(),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -160,10 +171,7 @@ class _ProfileViewState extends State<ProfileView> {
       children: [
         CustomSvg(path: icon),
         CustomWidthSpacer(width: 4),
-        Text(
-          title,
-          style: getRegularStyle(size: 14, color: AppColors.font01),
-        ),
+        Text(title, style: getRegularStyle(size: 14, color: AppColors.font01)),
       ],
     );
   }
@@ -212,22 +220,21 @@ class _ProfileViewState extends State<ProfileView> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          gradient: isSelectedIndex
-              ? LinearGradient(
-            colors: [
-              AppColors.primaryNormal,
-              AppColors.secondaryNormal,
-            ],
-          )
-              : null,
+          gradient:
+              isSelectedIndex
+                  ? LinearGradient(
+                    colors: [
+                      AppColors.primaryNormal,
+                      AppColors.secondaryNormal,
+                    ],
+                  )
+                  : null,
         ),
         child: Text(
           title,
           style: getBoldStyle(
             size: 14,
-            color: isSelectedIndex
-                ? AppColors.white
-                : AppColors.font01,
+            color: isSelectedIndex ? AppColors.white : AppColors.font01,
           ),
         ),
       ),

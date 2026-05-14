@@ -43,5 +43,35 @@
   "send_link": "Send Link",
   "a_password_reset_link_has_been_sent_to_your_email_successfully": "A password reset link has been sent to your email successfully",
   "projects": "Projects",
-  "links": "Links"
+  "links": "Links",
+  "no_people_to_show": "There are no people to show them",
+  "user_profiles_will_appear_here_once_they_become_available": "Profiles will be displayed here when new data becomes available.",
+  "something_went_wrong": "An error occurred while retrieving data.",
+  "please_check_your_internet_connection_and_try_again": "Please check your internet connection and try again.",
+  "data_updated_successfully": "Data updated successfully",
+  "account_settings": "Account Settings",
+  "account": "Account",
+  "edit_my_data_profile": "Edit my personal data",
+  "my_posts": "My Posts",
+  "my_projects": "My Projects",
+  "my_links": "My Links",
+  "language" :"Language",
+  "logout": "Logout",
+  "delete_account": "Delete Account",
+  "logout_confirmation": "Are you sure you want to log out?",
+  "cancel": "Cancel",
+  "exit": "Exit",
+  "country": "Country",
+  "specialization": "Specialization",
+  "permanent_type": "Permanent Type",
+  "bio": "Bio",
+  "save": "Save",
+  "enter_the_your_contry": "Please enter your country"
+
+
+
+
+
+
+
 }
