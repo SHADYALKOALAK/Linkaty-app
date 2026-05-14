@@ -224,4 +224,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enter_the_your_contry => 'Please enter your country';
+
+  @override
+  String get enter_the_your_specialization =>
+      'Please enter your specialization';
+
+  @override
+  String get please_enter_your_work_type => 'Please enter your work type';
+
+  @override
+  String get please_enter_your_bio => 'Please enter your bio';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
@@ -51,7 +52,11 @@ class _EmployeeItemCardState extends State<EmployeeItemCard> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(widget.employeeImage),
+                image: CachedNetworkImageProvider(
+                  widget.employeeImage.isNotEmpty
+                      ? widget.employeeImage
+                      : 'https://placehold.net/400x400.png',
+                ),
                 fit: BoxFit.cover,
               ),
             ),

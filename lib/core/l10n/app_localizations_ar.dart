@@ -223,4 +223,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enter_the_your_contry => 'الرجاء إدخال دولتك';
+
+  @override
+  String get enter_the_your_specialization => 'الرجاء ادخال تخصصك';
+
+  @override
+  String get please_enter_your_work_type => 'الرجاء ادخال نوع الدوام';
+
+  @override
+  String get please_enter_your_bio => 'الرجاء ادخال البيو الخاص فيك';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get delete => 'حذف';
 }

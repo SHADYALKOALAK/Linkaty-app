@@ -14,8 +14,8 @@ import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/auth/views/login_screen.dart';
-import 'package:linkaty/features/main_home/providers/users_provider.dart';
 import 'package:linkaty/features/profile/views/edit_profile_screen.dart';
+import 'package:linkaty/features/profile/views/projects_screen.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> with NavHelper {
                   _buildRowAction(
                     title: localizations.my_projects,
                     icon: AssetsApp.grid,
-                    onTap: () {},
+                    onTap: () => jump(context, ProjectsScreen(), false),
                   ),
                   _buildRowAction(
                     title: localizations.my_links,

@@ -52,16 +52,24 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
                 child: Row(
                   children: [
-                    Container(
-                      height: 55.h,
-                      width: 55.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: const DecorationImage(
-                          image: AssetImage(AssetsApp.profileImage),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    Consumer<AuthProvider>(
+                      builder: (context, auth, child) {
+                        return Container(
+                          height: 55.h,
+                          width: 55.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: (auth.user?.image != null &&
+                                          auth.user!.image!.isNotEmpty)
+                                      ? NetworkImage(auth.user!.image!)
+                                      : const AssetImage(AssetsApp.profileImage)
+                                          as ImageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     CustomWidthSpacer(width: 12),
                     Consumer<AuthProvider>(
@@ -87,17 +95,19 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
                         );
                       },
                     ),
+
                     CustomWidthSpacer(width: 12),
 
                     const Spacer(),
 
                     GestureDetector(
-                      onTap: () => jump(context, SearchScreen(), false),
+                      onTap: () => jump(context, const SearchScreen(), false),
                       child: CustomSvg(path: AssetsApp.searchIcon),
                     ),
                   ],
                 ),
               ),
+
               Expanded(child: _buildListExplore(localizations)),
             ],
           ),
@@ -142,7 +152,6 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
               localizations.data_updated_successfully,
               AppColors.success,
             );
-
           },
 
           child: ListView.separated(
@@ -160,7 +169,7 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
               final user = provider.users[index];
 
               return EmployeeItemCard(
-                employeeImage: AssetsApp.avatar,
+                employeeImage: user.image ?? '',
                 employeeName: user.fullName ?? '',
                 employeeLocation: user.location ?? '',
                 employeeDescription: user.bio ?? '',

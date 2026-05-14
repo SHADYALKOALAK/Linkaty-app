@@ -66,6 +66,10 @@
   "permanent_type": "نوع الدوام",
   "bio": "البيو",
   "save": "حفظ",
-  "enter_the_your_contry": "الرجاء إدخال دولتك"
-
+  "enter_the_your_contry": "الرجاء إدخال دولتك",
+  "enter_the_your_specialization": "الرجاء ادخال تخصصك",
+  "please_enter_your_work_type": "الرجاء ادخال نوع الدوام",
+  "please_enter_your_bio": "الرجاء ادخال البيو الخاص فيك",
+  "edit": "تعديل",
+  "delete" : "حذف"
 }

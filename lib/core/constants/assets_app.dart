@@ -37,4 +37,7 @@ class AssetsApp {
   static const String language = 'assets/icons/language.svg';
   static const String logout = 'assets/icons/logout.svg';
   static const String delete = 'assets/icons/delete.svg';
+  static const String boxDelete = 'assets/icons/box_delete.svg';
+  static const String boxEdit = 'assets/icons/box_edit.svg';
+  static const String menuDots = 'assets/icons/menu_dots.svg';
 }

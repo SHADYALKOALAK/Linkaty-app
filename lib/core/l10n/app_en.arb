@@ -66,7 +66,13 @@
   "permanent_type": "Permanent Type",
   "bio": "Bio",
   "save": "Save",
-  "enter_the_your_contry": "Please enter your country"
+  "enter_the_your_contry": "Please enter your country",
+  "enter_the_your_specialization": "Please enter your specialization",
+  "please_enter_your_work_type": "Please enter your work type",
+  "please_enter_your_bio": "Please enter your bio",
+  "edit": "Edit",
+  "delete": "Delete"
+
 
 
 

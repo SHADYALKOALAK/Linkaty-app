@@ -19,11 +19,8 @@ class UserService {
   /// Get a user by ID.
   Future<UserModel> getUserById(String id) async {
     try {
-      final response = await _supabase
-          .from(_tableName)
-          .select()
-          .eq('id', id)
-          .single();
+      final response =
+          await _supabase.from(_tableName).select().eq('id', id).single();
 
       return UserModel.fromJson(response);
     } catch (e) {
@@ -35,11 +32,8 @@ class UserService {
   /// Get a user by email.
   Future<UserModel> getUserByEmail({required String email}) async {
     try {
-      final response = await _supabase
-          .from(_tableName)
-          .select()
-          .eq('email', email)
-          .single();
+      final response =
+          await _supabase.from(_tableName).select().eq('email', email).single();
 
       return UserModel.fromJson(response);
     } catch (e) {
@@ -52,20 +46,24 @@ class UserService {
     return _supabase
         .from(_tableName)
         .stream(primaryKey: ['id'])
-        .map((data) =>
-        data.map((e) => UserModel.fromJson(e)).toList());
+        .map((data) => data.map((e) => UserModel.fromJson(e)).toList());
   }
 
-
-  /// Update user
   Future<bool> updateUser(UserModel user) async {
     try {
-      await _supabase
+      if (user.id == null || user.id!.isEmpty) {
+        throw Exception("User ID is missing");
+      }
+      final response = await _supabase
           .from(_tableName)
           .update(user.toJson())
-          .eq('id', user.id ?? '');
+          .eq('id', user.id!);
+      print("UPDATE RESPONSE = $response");
 
       return true;
+    } on PostgrestException catch (e) {
+      print('Supabase Error: ${e.message}');
+      return false;
     } catch (e) {
       print('Error updating user: $e');
       return false;
@@ -82,21 +80,16 @@ class UserService {
       return false;
     }
   }
+
   /// Get all users once
   Future<List<UserModel>> getAllUsersOnce() async {
     try {
-      final response = await _supabase
-          .from(_tableName)
-          .select();
+      final response = await _supabase.from(_tableName).select();
 
-      return response
-          .map<UserModel>((e) => UserModel.fromJson(e))
-          .toList();
-
+      return response.map<UserModel>((e) => UserModel.fromJson(e)).toList();
     } catch (e) {
       print('Error getting all users: $e');
       rethrow;
     }
   }
-
 }

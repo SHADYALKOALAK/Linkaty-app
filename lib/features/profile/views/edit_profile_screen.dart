@@ -6,11 +6,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:linkaty/core/helpers/chick_data_helper.dart';
 import 'package:linkaty/core/helpers/image_picker.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
+import 'package:linkaty/core/services/suabase/supabase_upload_service.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/core/widgets/custom_app_bar.dart';
+import 'package:linkaty/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/my_button.dart';
 import 'package:linkaty/core/widgets/my_lable_text_fild.dart';
+import 'package:linkaty/features/auth/models/user_model.dart';
+import 'package:linkaty/features/auth/providers/auth_provider.dart';
+import 'package:linkaty/features/auth/services/user_service.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -20,22 +26,37 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen>
-    with ImagePikerHelper ,ChickData{
+    with ImagePikerHelper, ChickData {
   late TextEditingController _nameController;
   late TextEditingController _locationController;
   late TextEditingController _specializationController;
   late TextEditingController _typeOfJobController;
   late TextEditingController _bioController;
+
   File? _image;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
+
     _nameController = TextEditingController();
     _locationController = TextEditingController();
     _specializationController = TextEditingController();
     _typeOfJobController = TextEditingController();
     _bioController = TextEditingController();
+
+    Future.microtask(() {
+      final user = Provider.of<AuthProvider>(context, listen: false).user;
+
+      if (user != null) {
+        _nameController.text = user.fullName ?? '';
+        _locationController.text = user.location ?? '';
+        _specializationController.text = user.specialization ?? '';
+        _typeOfJobController.text = user.typeOfJop ?? '';
+        _bioController.text = user.bio ?? '';
+      }
+    });
   }
 
   @override
@@ -51,6 +72,7 @@ class _EditProfileScreenState extends State<EditProfileScreen>
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    final user = Provider.of<AuthProvider>(context).user;
 
     return Scaffold(
       body: SafeArea(
@@ -60,20 +82,17 @@ class _EditProfileScreenState extends State<EditProfileScreen>
               title: localizations.edit_my_data_profile,
               isBack: true,
             ),
+
             Expanded(
               child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24.w),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 children: [
-                  CustomHeightSpacer(height: 24),
+                  SizedBox(height: 24),
+
                   GestureDetector(
-                    onTap: () {
-                      _picImage();
-                    },
+                    onTap: _picImage,
                     child: Center(
                       child: Stack(
-                        clipBehavior: Clip.none,
                         children: [
                           Container(
                             padding: EdgeInsets.all(4.w),
@@ -89,9 +108,12 @@ class _EditProfileScreenState extends State<EditProfileScreen>
                               backgroundImage:
                                   _image != null
                                       ? FileImage(_image!)
-                                      : const NetworkImage(
-                                        "https://placehold.net/400x400.png",
-                                      ),
+                                      : (user?.image != null &&
+                                              user!.image!.isNotEmpty
+                                          ? NetworkImage(user.image!)
+                                          : const NetworkImage(
+                                            "https://placehold.net/400x400.png",
+                                          )),
                             ),
                           ),
 
@@ -119,49 +141,49 @@ class _EditProfileScreenState extends State<EditProfileScreen>
                       ),
                     ),
                   ),
+
                   CustomHeightSpacer(height: 24),
                   MyTextField(
-                    hintText: 'أدخل اسمك كامل',
                     controller: _nameController,
                     label: localizations.full_name,
-                    isRequired: true,
-                    keyboardType: TextInputType.name,
+                    hintText: 'أدخل اسمك كامل',
                   ),
                   CustomHeightSpacer(height: 16),
+
                   MyTextField(
-                    hintText: 'أدخل الدولة',
                     controller: _locationController,
                     label: localizations.country,
-                    isRequired: true,
-                    keyboardType: TextInputType.text,
+                    hintText: 'أدخل الدولة',
                   ),
                   CustomHeightSpacer(height: 16),
+
                   MyTextField(
-                    hintText: 'أدخل التخصص',
                     controller: _specializationController,
                     label: localizations.specialization,
-                    isRequired: true,
-                    keyboardType: TextInputType.text,
+                    hintText: 'أدخل التخصص',
                   ),
                   CustomHeightSpacer(height: 16),
+
                   MyTextField(
-                    hintText: 'أدخل نوع الدوام',
                     controller: _typeOfJobController,
                     label: localizations.permanent_type,
-                    isRequired: true,
-                    keyboardType: TextInputType.text,
+                    hintText: 'أدخل نوع الدوام',
                   ),
                   CustomHeightSpacer(height: 16),
+
                   MyTextField(
-                    hintText: 'أكتب هنا ...',
                     controller: _bioController,
                     label: localizations.bio,
-                    isRequired: true,
+                    hintText: 'أكتب هنا ...',
                     maxLines: 3,
-                    keyboardType: TextInputType.text,
                   ),
                   CustomHeightSpacer(height: 24),
-                  MyButton(textButton: localizations.save, onTap: () {}),
+                  _isLoading
+                      ? const Center(child: CustomCircularProgressIndicator())
+                      : MyButton(
+                        textButton: localizations.save,
+                        onTap: () async => await updateProfile(localizations),
+                      ),
                 ],
               ),
             ),
@@ -181,116 +203,104 @@ class _EditProfileScreenState extends State<EditProfileScreen>
     }
   }
 
-  // bool _checkDataForm(AppLocalizations localizations) {
-  //   final fullName = _nameController.text;
-  //   final location = _locationController.text;
-  //   final specialization = _specializationController.text;
-  //   final typeOfJop = _typeOfJobController.text;
-  //   final bio = _bioController.text;
-  //
-  //   if (fullName.isEmpty) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_enter_your_full_name,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //   if (location.isEmpty) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_enter_your_email,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //
-  //   if (!checkEmail(email)) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_enter_your_email_address_correctly,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //
-  //   if (password.isEmpty) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_enter_your_password,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //
-  //   if (password.length < 6) {
-  //     showSnackBar(
-  //       context,
-  //       localizations
-  //           .the_password_is_weak_it_must_contain_at_least_6_characters,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //   if (confirmPassword.isEmpty) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_confirm_your_password,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //   if (password != confirmPassword) {
-  //     showSnackBar(
-  //       context,
-  //       localizations.please_enter_the_same_password_in_both_fields,
-  //       AppColors.error,
-  //     );
-  //     return false;
-  //   }
-  //
-  //   return true;
-  // }
-  //
-  // Future<void> signUp(AppLocalizations localizations) async {
-  //   if (!_checkDataForm(localizations)) return;
-  //
-  //   setState(() => _isLoading = true);
-  //
-  //   try {
-  //     final email = _emailController.text.trim();
-  //     final password = _passwordController.text;
-  //
-  //     final AuthResponse response = await AuthService()
-  //         .signUpWithEmailAndPassword(email: email, password: password);
-  //
-  //     final user = response.user;
-  //
-  //     if (user != null) {
-  //       UserModel newUser = UserModel(
-  //         id: user.id,
-  //         fullName: _nameController.text,
-  //         email: email,
-  //       );
-  //
-  //       bool isCreated = await UserService().createUser(newUser);
-  //
-  //       if (isCreated && mounted) {
-  //         Navigator.pop(context);
-  //         showSnackBar(
-  //           context,
-  //           localizations.signup_success,
-  //           AppColors.success,
-  //         );
-  //       }
-  //     }
-  //   } catch (e) {
-  //     showSnackBar(context, e.toString(), AppColors.error);
-  //     print(e.toString());
-  //   } finally {
-  //     if (mounted) {
-  //       setState(() => _isLoading = false);
-  //     }
-  //   }
-  // }
+  bool _checkDataForm(AppLocalizations localizations) {
+    if (_nameController.text.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.please_enter_your_full_name,
+        AppColors.error,
+      );
+      return false;
+    }
+
+    if (_locationController.text.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.enter_the_your_contry,
+        AppColors.error,
+      );
+      return false;
+    }
+
+    if (_specializationController.text.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.enter_the_your_specialization,
+        AppColors.error,
+      );
+      return false;
+    }
+
+    if (_typeOfJobController.text.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.please_enter_your_work_type,
+        AppColors.error,
+      );
+      return false;
+    }
+
+    if (_bioController.text.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.please_enter_your_bio,
+        AppColors.error,
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  Future<void> updateProfile(AppLocalizations localizations) async {
+    if (!_checkDataForm(localizations)) return;
+
+    setState(() => _isLoading = true);
+
+    try {
+      final user = Provider.of<AuthProvider>(context, listen: false).user;
+
+      String? imageUrl;
+
+      if (_image != null) {
+        final uploadService = SupabaseUploadService();
+
+        imageUrl = await uploadService.uploadFile(
+          file: _image!,
+          bucket: "profiles",
+          folder: "users",
+        );
+      }
+      final updatedUser = UserModel(
+        id: user?.id,
+        fullName: _nameController.text,
+        location: _locationController.text,
+        specialization: _specializationController.text,
+        typeOfJop: _typeOfJobController.text,
+        bio: _bioController.text,
+        email: user?.email ?? '',
+        image: imageUrl ?? user?.image,
+      );
+      bool isUpdated = await UserService().updateUser(updatedUser);
+
+      if (isUpdated && mounted) {
+        Provider.of<AuthProvider>(
+          context,
+          listen: false,
+        ).setUser(updatedUser);
+        showSnackBar(
+          context,
+          localizations.data_updated_successfully,
+          AppColors.success,
+        );
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      showSnackBar(context, e.toString(), AppColors.error);
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
 }

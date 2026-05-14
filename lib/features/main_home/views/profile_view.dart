@@ -10,7 +10,6 @@ import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
-import 'package:linkaty/features/auth/services/auth_service.dart';
 import 'package:linkaty/features/main_home/views/settings_screen.dart';
 import 'package:linkaty/features/main_home/widgets/links_list.dart';
 import 'package:linkaty/features/main_home/widgets/location_badge.dart';
@@ -43,21 +42,29 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                 fit: BoxFit.cover,
               ),
 
-              PositionedDirectional(
-                bottom: -45.w,
-                start: 24.w,
-                child: Container(
-                  height: 90.w,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 4.w),
-                    image: DecorationImage(
-                      image: AssetImage(AssetsApp.avatar),
-                      fit: BoxFit.cover,
+              Consumer<AuthProvider>(
+                builder: (context, auth, child) {
+                  return PositionedDirectional(
+                    bottom: -45.w,
+                    start: 24.w,
+                    child: Container(
+                      height: 90.w,
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 4.w),
+                        image: DecorationImage(
+                          image: (auth.user?.image != null &&
+                              auth.user!.image!.isNotEmpty)
+                              ? NetworkImage(auth.user!.image!)
+                              : const AssetImage(AssetsApp.profileImage)
+                          as ImageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
 
               PositionedDirectional(
@@ -143,6 +150,8 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
               ),
               CustomHeightSpacer(height: 8),
               Text(
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 auth.user?.bio ?? 'لا يوجد نبذة تعريفية',
                 style: getRegularStyle(size: 14, color: AppColors.font01),
               ),

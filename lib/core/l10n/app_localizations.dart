@@ -506,6 +506,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الرجاء إدخال دولتك'**
   String get enter_the_your_contry;
+
+  /// No description provided for @enter_the_your_specialization.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء ادخال تخصصك'**
+  String get enter_the_your_specialization;
+
+  /// No description provided for @please_enter_your_work_type.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء ادخال نوع الدوام'**
+  String get please_enter_your_work_type;
+
+  /// No description provided for @please_enter_your_bio.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء ادخال البيو الخاص فيك'**
+  String get please_enter_your_bio;
+
+  /// No description provided for @edit.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل'**
+  String get edit;
+
+  /// No description provided for @delete.
+  ///
+  /// In ar, this message translates to:
+  /// **'حذف'**
+  String get delete;
 }
 
 class _AppLocalizationsDelegate
