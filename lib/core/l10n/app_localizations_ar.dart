@@ -238,4 +238,48 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get delete => 'حذف';
+
+  @override
+  String get addANew => 'إضافة جديد';
+
+  @override
+  String get nameProject => 'اسم المشروع';
+
+  @override
+  String get description_project => 'وصف المشروع';
+
+  @override
+  String get link_project => 'رابط المشروع';
+
+  @override
+  String get upload_image_from_here => 'ارفع الصور من هنا';
+
+  @override
+  String get choose_the_image => 'اختر الصورة';
+
+  @override
+  String get please_enter_the_project_name => 'الرجاء إدخال اسم المشروع';
+
+  @override
+  String get please_enter_the_project_link => 'الرجاء إدخال رابط المشروع';
+
+  @override
+  String get please_enter_a_project_description => 'الرجاء إدخال وصف المشروع';
+
+  @override
+  String get please_enter_a_valid_link => 'الرجاء إدخال رابط صحيح';
+
+  @override
+  String get please_upload_the_image => 'الرجاء رفع الصورة';
+
+  @override
+  String get added_successfully => 'تم الإضافة بنجاح';
+
+  @override
+  String get no_projects_have_been_added_yet => 'لا توجد مشاريع مضافة حتى الآن';
+
+  @override
+  String
+  get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
+      'ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق';
 }

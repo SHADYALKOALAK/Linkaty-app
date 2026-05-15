@@ -9,6 +9,8 @@ import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardProject extends StatelessWidget {
   final String image;
@@ -139,10 +141,39 @@ class CardProject extends StatelessWidget {
                             ),
                           ],
                     )
-                    : CustomSvg(path: AssetsApp.shareProject),
+                    : GestureDetector(
+                    onTap: () async {
+                      if (link.isNotEmpty) {
+                        final fixedLink =
+                        link.startsWith('http') ? link : 'https://$link';
+
+                        final uri = Uri.parse(fixedLink);
+
+                        await launchUrl(
+                          uri,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    child: GestureDetector(
+                        onTap: () => openLink(link),
+                        child: CustomSvg(path: AssetsApp.shareProject))
+                ),
           ),
         ],
       ),
+    );
+  }
+  Future<void> openLink(String? link) async {
+    if (link == null || link.isEmpty) return;
+
+    final uri = Uri.parse(
+      link.startsWith('http') ? link : 'https://$link',
+    );
+
+    await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
     );
   }
 }

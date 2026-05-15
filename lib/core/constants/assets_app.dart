@@ -40,4 +40,5 @@ class AssetsApp {
   static const String boxDelete = 'assets/icons/box_delete.svg';
   static const String boxEdit = 'assets/icons/box_edit.svg';
   static const String menuDots = 'assets/icons/menu_dots.svg';
+
 }

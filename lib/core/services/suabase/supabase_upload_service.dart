@@ -35,4 +35,31 @@ class SupabaseUploadService {
       return null;
     }
   }
+  Future<bool> deleteFile({
+    required String bucket,
+    required String filePath,
+  }) async {
+    try {
+      final response = await _supabase.storage
+          .from(bucket)
+          .remove([filePath]);
+
+      return response.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  String extractPathFromUrl(String url, String bucket) {
+    final uri = Uri.parse(url);
+    final segments = uri.pathSegments;
+
+    final index = segments.indexOf(bucket);
+
+    if (index != -1 && index + 1 < segments.length) {
+      return segments.sublist(index + 1).join('/');
+    }
+
+    return '';
+  }
 }

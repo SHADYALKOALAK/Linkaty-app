@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
 import 'package:linkaty/core/enums/enums.dart';
-import 'package:linkaty/core/helpers/check_email_helper.dart';
+import 'package:linkaty/core/helpers/checker_helper.dart';
 import 'package:linkaty/core/helpers/chick_data_helper.dart';
 import 'package:linkaty/core/helpers/nav_helper.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
@@ -15,7 +15,6 @@ import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
 import 'package:linkaty/core/widgets/my_button.dart';
 import 'package:linkaty/core/widgets/my_lable_text_fild.dart';
-import 'package:linkaty/features/auth/models/user_model.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/auth/services/auth_service.dart';
 import 'package:linkaty/features/auth/services/user_service.dart';
@@ -35,7 +34,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen>
-    with NavHelper, CheckEmailHelper, ChickData {
+    with NavHelper, CheckerHelper, ChickData {
   late TextEditingController _emailController;
 
   late TextEditingController _passwordController;

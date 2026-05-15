@@ -240,4 +240,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get delete => 'Delete';
+
+  @override
+  String get addANew => 'Add a new';
+
+  @override
+  String get nameProject => 'Name project';
+
+  @override
+  String get description_project => 'Description project';
+
+  @override
+  String get link_project => 'Link project';
+
+  @override
+  String get upload_image_from_here => 'Upload images from here';
+
+  @override
+  String get choose_the_image => 'Choose the image';
+
+  @override
+  String get please_enter_the_project_name => 'Please enter the project name';
+
+  @override
+  String get please_enter_the_project_link => 'Please enter the project link';
+
+  @override
+  String get please_enter_a_project_description =>
+      'Please enter a project description';
+
+  @override
+  String get please_enter_a_valid_link => 'Please enter a valid link';
+
+  @override
+  String get please_upload_the_image => 'Please upload the image';
+
+  @override
+  String get added_successfully => 'Added successfully';
+
+  @override
+  String get no_projects_have_been_added_yet =>
+      'No projects have been added yet';
+
+  @override
+  String
+  get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
+      'Start by adding your projects to showcase your work and boost your visibility in the app';
 }

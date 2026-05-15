@@ -3,7 +3,7 @@ import 'package:linkaty/core/enums/enums.dart';
 import 'package:linkaty/core/services/cache/app_preferences.dart';
 
 class LanguageProvider extends ChangeNotifier {
-  String language = AppPreferences().getter(CacheKeys.language) ?? 'en';
+  String language = AppPreferences().getter(CacheKeys.language) ?? 'ar';
 
   Future<void> changeLanguage() async {
     language = language == 'ar' ? 'en' : 'ar';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
-import 'package:linkaty/core/helpers/check_email_helper.dart';
+import 'package:linkaty/core/helpers/checker_helper.dart';
 import 'package:linkaty/core/helpers/chick_data_helper.dart';
 import 'package:linkaty/core/helpers/nav_helper.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
@@ -28,7 +28,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen>
-    with NavHelper, CheckEmailHelper, ChickData {
+    with NavHelper, CheckerHelper, ChickData {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;

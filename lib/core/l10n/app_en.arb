@@ -55,7 +55,7 @@
   "my_posts": "My Posts",
   "my_projects": "My Projects",
   "my_links": "My Links",
-  "language" :"Language",
+  "language": "Language",
   "logout": "Logout",
   "delete_account": "Delete Account",
   "logout_confirmation": "Are you sure you want to log out?",
@@ -71,13 +71,19 @@
   "please_enter_your_work_type": "Please enter your work type",
   "please_enter_your_bio": "Please enter your bio",
   "edit": "Edit",
-  "delete": "Delete"
-
-
-
-
-
-
-
-
+  "delete": "Delete",
+  "addANew": "Add a new",
+  "nameProject": "Name project",
+  "description_project": "Description project",
+  "link_project": "Link project",
+  "upload_image_from_here": "Upload images from here",
+  "choose_the_image": "Choose the image",
+  "please_enter_the_project_name": "Please enter the project name",
+  "please_enter_the_project_link": "Please enter the project link",
+  "please_enter_a_project_description": "Please enter a project description",
+  "please_enter_a_valid_link": "Please enter a valid link",
+  "please_upload_the_image": "Please upload the image",
+  "added_successfully": "Added successfully",
+  "no_projects_have_been_added_yet": "No projects have been added yet",
+  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "Start by adding your projects to showcase your work and boost your visibility in the app"
 }

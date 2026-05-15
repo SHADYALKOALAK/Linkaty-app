@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
-import 'package:linkaty/core/helpers/check_email_helper.dart';
+import 'package:linkaty/core/helpers/checker_helper.dart';
 import 'package:linkaty/core/helpers/chick_data_helper.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
@@ -22,7 +22,7 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen>
-    with CheckEmailHelper, ChickData {
+    with CheckerHelper, ChickData {
   late TextEditingController _emailController;
 
   bool _isLoading = false;

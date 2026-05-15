@@ -536,6 +536,91 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'حذف'**
   String get delete;
+
+  /// No description provided for @addANew.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة جديد'**
+  String get addANew;
+
+  /// No description provided for @nameProject.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم المشروع'**
+  String get nameProject;
+
+  /// No description provided for @description_project.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصف المشروع'**
+  String get description_project;
+
+  /// No description provided for @link_project.
+  ///
+  /// In ar, this message translates to:
+  /// **'رابط المشروع'**
+  String get link_project;
+
+  /// No description provided for @upload_image_from_here.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارفع الصور من هنا'**
+  String get upload_image_from_here;
+
+  /// No description provided for @choose_the_image.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختر الصورة'**
+  String get choose_the_image;
+
+  /// No description provided for @please_enter_the_project_name.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال اسم المشروع'**
+  String get please_enter_the_project_name;
+
+  /// No description provided for @please_enter_the_project_link.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال رابط المشروع'**
+  String get please_enter_the_project_link;
+
+  /// No description provided for @please_enter_a_project_description.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال وصف المشروع'**
+  String get please_enter_a_project_description;
+
+  /// No description provided for @please_enter_a_valid_link.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال رابط صحيح'**
+  String get please_enter_a_valid_link;
+
+  /// No description provided for @please_upload_the_image.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء رفع الصورة'**
+  String get please_upload_the_image;
+
+  /// No description provided for @added_successfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم الإضافة بنجاح'**
+  String get added_successfully;
+
+  /// No description provided for @no_projects_have_been_added_yet.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد مشاريع مضافة حتى الآن'**
+  String get no_projects_have_been_added_yet;
+
+  /// No description provided for @start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق'**
+  String
+  get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app;
 }
 
 class _AppLocalizationsDelegate

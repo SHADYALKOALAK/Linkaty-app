@@ -71,5 +71,19 @@
   "please_enter_your_work_type": "الرجاء ادخال نوع الدوام",
   "please_enter_your_bio": "الرجاء ادخال البيو الخاص فيك",
   "edit": "تعديل",
-  "delete" : "حذف"
+  "delete" : "حذف",
+  "addANew": "إضافة جديد",
+  "nameProject":"اسم المشروع",
+  "description_project":"وصف المشروع",
+  "link_project": "رابط المشروع",
+  "upload_image_from_here":"ارفع الصور من هنا",
+  "choose_the_image": "اختر الصورة",
+  "please_enter_the_project_name": "الرجاء إدخال اسم المشروع",
+  "please_enter_the_project_link": "الرجاء إدخال رابط المشروع",
+  "please_enter_a_project_description": "الرجاء إدخال وصف المشروع",
+  "please_enter_a_valid_link": "الرجاء إدخال رابط صحيح",
+  "please_upload_the_image": "الرجاء رفع الصورة",
+  "added_successfully": "تم الإضافة بنجاح",
+  "no_projects_have_been_added_yet":"لا توجد مشاريع مضافة حتى الآن",
+  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق"
 }
