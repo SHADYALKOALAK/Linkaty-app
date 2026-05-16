@@ -1,4 +1,3 @@
-
 class UserModel {
   String? id;
   String? fullName;
@@ -8,6 +7,7 @@ class UserModel {
   String? typeOfJop;
   String? location;
   String? specialization;
+  bool? is_profile_active;
 
   UserModel({
     this.id,
@@ -18,6 +18,7 @@ class UserModel {
     this.typeOfJop,
     this.location,
     this.specialization,
+    this.is_profile_active = false,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +30,7 @@ class UserModel {
     typeOfJop = json['typeOfJop'];
     location = json['location'];
     specialization = json['specialization'];
+    is_profile_active = json['is_profile_active'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +43,7 @@ class UserModel {
     json['typeOfJop'] = typeOfJop;
     json['location'] = location;
     json['specialization'] = specialization;
+    json['is_profile_active'] = is_profile_active;
     return json;
   }
 }

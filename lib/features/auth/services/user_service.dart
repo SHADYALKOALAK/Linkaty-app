@@ -81,12 +81,17 @@ class UserService {
     }
   }
 
-  /// Get all users once
+  /// Get active users only
   Future<List<UserModel>> getAllUsersOnce() async {
     try {
-      final response = await _supabase.from(_tableName).select();
+      final response = await _supabase
+          .from(_tableName)
+          .select()
+          .eq('is_profile_active', true);
 
-      return response.map<UserModel>((e) => UserModel.fromJson(e)).toList();
+      return response
+          .map<UserModel>((e) => UserModel.fromJson(e))
+          .toList();
     } catch (e) {
       print('Error getting all users: $e');
       rethrow;

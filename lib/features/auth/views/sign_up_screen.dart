@@ -266,6 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen>
           id: user.id,
           fullName: _nameController.text,
           email: email,
+          is_profile_active: false,
         );
 
         bool isCreated = await UserService().createUser(newUser);
