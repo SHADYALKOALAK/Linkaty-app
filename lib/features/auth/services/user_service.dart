@@ -97,4 +97,26 @@ class UserService {
       rethrow;
     }
   }
+  Future<List<UserModel>> searchUsers(String query) async {
+    try {
+      final response = await _supabase
+          .from('Users')
+          .select('''
+          id,
+          fullName,
+          image,
+          location,
+          bio,
+          specialization
+        ''')
+          .eq('is_profile_active', true)
+          .ilike('fullName', '%$query%');
+
+      final data = response as List;
+
+      return data.map((e) => UserModel.fromJson(e)).toList();
+    } catch (e) {
+      throw Exception('Search failed: $e');
+    }
+  }
 }

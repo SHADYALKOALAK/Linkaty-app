@@ -96,5 +96,7 @@
   "the_user_has_not_added_any_projects_yet": "لم يضف المستخدم أي مشاريع حتى الآن",
   "the_user_has_not_added_any_links_yet": "لم يضف المستخدم أي روابط حتى الأن",
   "send_a_massage": "إرسال رسالة",
-  "share_a_user": "مشاركة المستخدم"
+  "share_a_user": "مشاركة المستخدم",
+  "no_results_found": "لا توجد نتائج",
+  "we_couldnt_find_it": "لم نتمكن من العثور على أي مستخدم مطابق لعملية البحث. جرّب استخدام كلمات مختلفة أو تأكد من صحة الإملاء"
 }

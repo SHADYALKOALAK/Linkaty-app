@@ -688,6 +688,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مشاركة المستخدم'**
   String get share_a_user;
+
+  /// No description provided for @no_results_found.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد نتائج'**
+  String get no_results_found;
+
+  /// No description provided for @we_couldnt_find_it.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم نتمكن من العثور على أي مستخدم مطابق لعملية البحث. جرّب استخدام كلمات مختلفة أو تأكد من صحة الإملاء'**
+  String get we_couldnt_find_it;
 }
 
 class _AppLocalizationsDelegate

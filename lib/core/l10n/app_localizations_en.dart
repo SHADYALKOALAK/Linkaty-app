@@ -323,4 +323,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get share_a_user => 'Share a user';
+
+  @override
+  String get no_results_found => 'No results found';
+
+  @override
+  String get we_couldnt_find_it =>
+      'We couldn\'t find any users matching your search. Try using different keywords or double-check your spelling';
 }

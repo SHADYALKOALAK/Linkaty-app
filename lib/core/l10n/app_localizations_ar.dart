@@ -319,4 +319,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get share_a_user => 'مشاركة المستخدم';
+
+  @override
+  String get no_results_found => 'لا توجد نتائج';
+
+  @override
+  String get we_couldnt_find_it =>
+      'لم نتمكن من العثور على أي مستخدم مطابق لعملية البحث. جرّب استخدام كلمات مختلفة أو تأكد من صحة الإملاء';
 }
