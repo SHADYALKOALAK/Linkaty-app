@@ -152,13 +152,14 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                           color: AppColors.primaryNormal,
                         ),
                       ),
-                      if (auth.user?.isVerified ?? false)
-                      CustomWidthSpacer(width: 8),
-                      CustomSvg(
-                        path: AssetsApp.verifiedIcon,
-                        width: 18.w,
-                        height: 18.h,
-                      ),
+                      if (auth.user?.isVerified ?? false) ...[
+                        CustomWidthSpacer(width: 8),
+                        CustomSvg(
+                          path: AssetsApp.verifiedIcon,
+                          width: 18.w,
+                          height: 18.h,
+                        ),
+                      ],
                     ],
                   ),
                   const Spacer(),
