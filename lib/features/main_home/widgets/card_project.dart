@@ -142,38 +142,20 @@ class CardProject extends StatelessWidget {
                           ],
                     )
                     : GestureDetector(
-                    onTap: () async {
-                      if (link.isNotEmpty) {
-                        final fixedLink =
-                        link.startsWith('http') ? link : 'https://$link';
-
-                        final uri = Uri.parse(fixedLink);
-
-                        await launchUrl(
-                          uri,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    },
-                    child: GestureDetector(
-                        onTap: () => openLink(link),
-                        child: CustomSvg(path: AssetsApp.shareProject))
-                ),
+                      onTap: () => openLink(link),
+                      child: CustomSvg(path: AssetsApp.shareProject),
+                    ),
           ),
         ],
       ),
     );
   }
+
   Future<void> openLink(String? link) async {
     if (link == null || link.isEmpty) return;
 
-    final uri = Uri.parse(
-      link.startsWith('http') ? link : 'https://$link',
-    );
+    final uri = Uri.parse(link.startsWith('http') ? link : 'https://$link');
 
-    await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    );
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 }

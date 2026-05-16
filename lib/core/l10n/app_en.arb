@@ -85,5 +85,19 @@
   "please_upload_the_image": "Please upload the image",
   "added_successfully": "Added successfully",
   "no_projects_have_been_added_yet": "No projects have been added yet",
-  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "Start by adding your projects to showcase your work and boost your visibility in the app"
+  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "Start by adding your projects to showcase your work and boost your visibility in the app",
+  "please_enter_the_platform_name": "Please enter the platform name",
+  "please_enter_the_platform_link": "Please enter the platform link",
+  "platform_name": "Platform name",
+  "platform_link": "Platform link",
+  "no_links_have_been_added_yet":"No links have been added yet",
+  "start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app": "Start by adding your links to showcase your platforms and boost your visibility in the app",
+  "user_deletes": "User deletes",
+  "the_user_has_not_added_any_projects_yet": "The user has not added any projects yet",
+  "the_user_has_not_added_any_links_yet": "The user has not added any links yet",
+  "send_a_massage": "Send a massage",
+  "share_a_user": "Share a user"
+
+
+
 }

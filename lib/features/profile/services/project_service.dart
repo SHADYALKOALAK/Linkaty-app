@@ -35,7 +35,7 @@ class ProjectService {
     }
   }
 
-  /// Delete user
+  /// Delete project
   Future<bool> deleteProject({required String id}) async {
     try {
       await _supabase.from(_tableName).delete().eq('id', id);
@@ -46,7 +46,7 @@ class ProjectService {
     }
   }
 
-  /// Get all projects by user id
+  /// Stream all projects by user id
 
   Stream<List<ProjectModel>> getAllProjectsByUserId({required String userId}) {
     return Supabase.instance.client
@@ -60,4 +60,16 @@ class ProjectService {
         });
   }
 
+  /// Get all projects by user id
+
+  Future<List<ProjectModel>> getAllProjectsByUserIdOnce({
+    required String id,
+  }) async {
+    final response = await _supabase
+        .from(_tableName)
+        .select()
+        .eq('user_id', id);
+
+    return response.map<ProjectModel>((e) => ProjectModel.fromJson(e)).toList();
+  }
 }

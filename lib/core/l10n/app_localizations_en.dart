@@ -286,4 +286,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String
   get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
       'Start by adding your projects to showcase your work and boost your visibility in the app';
+
+  @override
+  String get please_enter_the_platform_name => 'Please enter the platform name';
+
+  @override
+  String get please_enter_the_platform_link => 'Please enter the platform link';
+
+  @override
+  String get platform_name => 'Platform name';
+
+  @override
+  String get platform_link => 'Platform link';
+
+  @override
+  String get no_links_have_been_added_yet => 'No links have been added yet';
+
+  @override
+  String
+  get start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
+      'Start by adding your links to showcase your platforms and boost your visibility in the app';
+
+  @override
+  String get user_deletes => 'User deletes';
+
+  @override
+  String get the_user_has_not_added_any_projects_yet =>
+      'The user has not added any projects yet';
+
+  @override
+  String get the_user_has_not_added_any_links_yet =>
+      'The user has not added any links yet';
+
+  @override
+  String get send_a_massage => 'Send a massage';
+
+  @override
+  String get share_a_user => 'Share a user';
 }

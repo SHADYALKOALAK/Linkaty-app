@@ -14,6 +14,8 @@ import 'package:linkaty/features/auth/models/user_model.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/auth/services/user_service.dart';
 import 'package:linkaty/features/main_home/providers/users_provider.dart';
+import 'package:linkaty/features/main_home/views/profile_view.dart';
+import 'package:linkaty/features/main_home/views/public_profile_screen.dart';
 import 'package:linkaty/features/main_home/views/search_screen.dart';
 import 'package:linkaty/features/main_home/widgets/employee_item_card.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +62,8 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: (auth.user?.image != null &&
+                              image:
+                                  (auth.user?.image != null &&
                                           auth.user!.image!.isNotEmpty)
                                       ? NetworkImage(auth.user!.image!)
                                       : const AssetImage(AssetsApp.profileImage)
@@ -168,12 +171,16 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
             itemBuilder: (context, index) {
               final user = provider.users[index];
 
-              return EmployeeItemCard(
-                employeeImage: user.image ?? '',
-                employeeName: user.fullName ?? '',
-                employeeLocation: user.location ?? '',
-                employeeDescription: user.bio ?? '',
-                employeeJob: user.specialization ?? '',
+              return GestureDetector(
+                onTap:
+                    () => jump(context, PublicProfileScreen(user: user), false),
+                child: EmployeeItemCard(
+                  employeeImage: user.image ?? '',
+                  employeeName: user.fullName ?? '',
+                  employeeLocation: user.location ?? '',
+                  employeeDescription: user.bio ?? '',
+                  employeeJob: user.specialization ?? '',
+                ),
               );
             },
           ),

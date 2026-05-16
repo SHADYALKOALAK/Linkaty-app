@@ -15,6 +15,7 @@ import 'package:linkaty/core/widgets/custom_width_spacer.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/auth/views/login_screen.dart';
 import 'package:linkaty/features/profile/views/edit_profile_screen.dart';
+import 'package:linkaty/features/profile/views/links_screen.dart';
 import 'package:linkaty/features/profile/views/projects_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> with NavHelper {
                   _buildRowAction(
                     title: localizations.my_links,
                     icon: AssetsApp.links,
-                    onTap: () {},
+                    onTap: () => jump(context, LinksScreen(), false),
                   ),
                   _buildTextHeader(title: localizations.language),
                   _buildRowAction(

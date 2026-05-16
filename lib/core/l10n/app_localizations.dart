@@ -621,6 +621,73 @@ abstract class AppLocalizations {
   /// **'ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق'**
   String
   get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app;
+
+  /// No description provided for @please_enter_the_platform_name.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال اسم المنصة'**
+  String get please_enter_the_platform_name;
+
+  /// No description provided for @please_enter_the_platform_link.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرجاء إدخال رابط المنصة'**
+  String get please_enter_the_platform_link;
+
+  /// No description provided for @platform_name.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم المنصة'**
+  String get platform_name;
+
+  /// No description provided for @platform_link.
+  ///
+  /// In ar, this message translates to:
+  /// **'رابط المنصة'**
+  String get platform_link;
+
+  /// No description provided for @no_links_have_been_added_yet.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد روابط مضافة حتى الآن'**
+  String get no_links_have_been_added_yet;
+
+  /// No description provided for @start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابدأ بإضافة روابطك لعرض منصاتك وتعزيز ظهورك في التطبيق'**
+  String
+  get start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app;
+
+  /// No description provided for @user_deletes.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل المستخدم'**
+  String get user_deletes;
+
+  /// No description provided for @the_user_has_not_added_any_projects_yet.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم يضف المستخدم أي مشاريع حتى الآن'**
+  String get the_user_has_not_added_any_projects_yet;
+
+  /// No description provided for @the_user_has_not_added_any_links_yet.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم يضف المستخدم أي روابط حتى الأن'**
+  String get the_user_has_not_added_any_links_yet;
+
+  /// No description provided for @send_a_massage.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرسال رسالة'**
+  String get send_a_massage;
+
+  /// No description provided for @share_a_user.
+  ///
+  /// In ar, this message translates to:
+  /// **'مشاركة المستخدم'**
+  String get share_a_user;
 }
 
 class _AppLocalizationsDelegate

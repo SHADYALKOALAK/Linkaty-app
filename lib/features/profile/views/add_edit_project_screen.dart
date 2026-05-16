@@ -388,8 +388,4 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen>
       }
     }
   }
-
-  Future<void> uploadImage() async {
-
-  }
 }

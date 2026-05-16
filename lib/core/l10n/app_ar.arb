@@ -85,5 +85,16 @@
   "please_upload_the_image": "الرجاء رفع الصورة",
   "added_successfully": "تم الإضافة بنجاح",
   "no_projects_have_been_added_yet":"لا توجد مشاريع مضافة حتى الآن",
-  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق"
+  "start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app": "ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق",
+  "please_enter_the_platform_name": "الرجاء إدخال اسم المنصة",
+  "please_enter_the_platform_link": "الرجاء إدخال رابط المنصة",
+  "platform_name": "اسم المنصة",
+  "platform_link": "رابط المنصة",
+  "no_links_have_been_added_yet":"لا توجد روابط مضافة حتى الآن",
+  "start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app": "ابدأ بإضافة روابطك لعرض منصاتك وتعزيز ظهورك في التطبيق",
+  "user_deletes": "تفاصيل المستخدم",
+  "the_user_has_not_added_any_projects_yet": "لم يضف المستخدم أي مشاريع حتى الآن",
+  "the_user_has_not_added_any_links_yet": "لم يضف المستخدم أي روابط حتى الأن",
+  "send_a_massage": "إرسال رسالة",
+  "share_a_user": "مشاركة المستخدم"
 }

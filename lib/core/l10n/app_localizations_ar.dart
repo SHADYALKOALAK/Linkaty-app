@@ -282,4 +282,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String
   get start_by_adding_your_projects_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
       'ابدأ بإضافة مشاريعك لعرض أعمالك وتعزيز ظهورك في التطبيق';
+
+  @override
+  String get please_enter_the_platform_name => 'الرجاء إدخال اسم المنصة';
+
+  @override
+  String get please_enter_the_platform_link => 'الرجاء إدخال رابط المنصة';
+
+  @override
+  String get platform_name => 'اسم المنصة';
+
+  @override
+  String get platform_link => 'رابط المنصة';
+
+  @override
+  String get no_links_have_been_added_yet => 'لا توجد روابط مضافة حتى الآن';
+
+  @override
+  String
+  get start_by_adding_your_links_to_showcase_your_work_and_boost_your_visibility_in_the_app =>
+      'ابدأ بإضافة روابطك لعرض منصاتك وتعزيز ظهورك في التطبيق';
+
+  @override
+  String get user_deletes => 'تفاصيل المستخدم';
+
+  @override
+  String get the_user_has_not_added_any_projects_yet =>
+      'لم يضف المستخدم أي مشاريع حتى الآن';
+
+  @override
+  String get the_user_has_not_added_any_links_yet =>
+      'لم يضف المستخدم أي روابط حتى الأن';
+
+  @override
+  String get send_a_massage => 'إرسال رسالة';
+
+  @override
+  String get share_a_user => 'مشاركة المستخدم';
 }

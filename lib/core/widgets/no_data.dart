@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
@@ -8,12 +9,16 @@ class NoData extends StatelessWidget {
   final String title;
   final String suTitle;
   final String image;
+  final double widthOfImage;
+  final double heightOfImage;
 
   const NoData({
     super.key,
     required this.title,
     required this.suTitle,
     required this.image,
+    this.widthOfImage = 280,
+    this.heightOfImage = 280,
   });
 
   @override
@@ -22,7 +27,7 @@ class NoData extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomSvg(path: image),
+        CustomSvg(path: image, width: widthOfImage.w, height: heightOfImage.h),
         CustomHeightSpacer(height: 16),
         Text(
           title,

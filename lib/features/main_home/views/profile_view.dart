@@ -9,12 +9,15 @@ import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
 import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
+import 'package:linkaty/core/widgets/row_info_profile.dart';
+import 'package:linkaty/core/widgets/tap_item.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
 import 'package:linkaty/features/main_home/views/settings_screen.dart';
 import 'package:linkaty/features/main_home/widgets/links_list.dart';
 import 'package:linkaty/features/main_home/widgets/location_badge.dart';
 import 'package:linkaty/features/main_home/widgets/projects_list.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -54,11 +57,12 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 4.w),
                         image: DecorationImage(
-                          image: (auth.user?.image != null &&
-                              auth.user!.image!.isNotEmpty)
-                              ? NetworkImage(auth.user!.image!)
-                              : const AssetImage(AssetsApp.profileImage)
-                          as ImageProvider,
+                          image:
+                              (auth.user?.image != null &&
+                                      auth.user!.image!.isNotEmpty)
+                                  ? NetworkImage(auth.user!.image!)
+                                  : const AssetImage(AssetsApp.profileImage)
+                                      as ImageProvider,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -77,7 +81,19 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                       onTap: () => jump(context, SettingsScreen(), false),
                     ),
                     CustomWidthSpacer(width: 16),
-                    _buildActionIcon(icon: AssetsApp.shareIcon, onTap: () {}),
+                    _buildActionIcon(
+                      icon: AssetsApp.shareIcon,
+                      onTap: () {
+                        final user = context.read<AuthProvider>().user;
+                        Share.share(
+                          '👤 Profile Linkaty\n'
+                          'Name: ${user?.fullName ?? ''}\n'
+                          'Specialization: ${user?.specialization ?? ''}\n'
+                          'Bio: ${user?.bio ?? ''}\n'
+                          '\n📲 Download Linkaty app',
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -139,12 +155,12 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
 
               SizedBox(height: 8.h),
 
-              _buildInfoRow(
+              RowInfoProfile(
                 title: auth.user?.specialization ?? 'لم تحدد بعد',
                 icon: AssetsApp.emploeyBag,
               ),
               CustomHeightSpacer(height: 8),
-              _buildInfoRow(
+              RowInfoProfile(
                 title: auth.user?.typeOfJop ?? 'لم تحدد بعد',
                 icon: AssetsApp.clockIcon,
               ),
@@ -164,24 +180,11 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
 
               _buildTapsProfile(localizations),
               CustomHeightSpacer(height: 24),
-              Expanded(
-                child:
-                    selectedTab == 0 ? const ProjectsList() : const LinksList(),
-              ),
+              Expanded(child: selectedTab == 0 ? ProjectsList() : LinksList()),
             ],
           ),
         );
       },
-    );
-  }
-
-  Widget _buildInfoRow({required String title, required String icon}) {
-    return Row(
-      children: [
-        CustomSvg(path: icon),
-        CustomWidthSpacer(width: 4),
-        Text(title, style: getRegularStyle(size: 14, color: AppColors.font01)),
-      ],
     );
   }
 
@@ -198,54 +201,20 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
       child: Row(
         children: [
           Expanded(
-            child: _buildTapItem(
+            child: TapItem(
               onTap: () => setState(() => selectedTab = 0),
-              isSelectedIndex: selectedTab == 0,
+              isSelected: selectedTab == 0,
               title: localizations.projects,
             ),
           ),
           Expanded(
-            child: _buildTapItem(
+            child: TapItem(
               onTap: () => setState(() => selectedTab = 1),
-              isSelectedIndex: selectedTab == 1,
+              isSelected: selectedTab == 1,
               title: localizations.links,
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  // ================= TAB ITEM =================
-  Widget _buildTapItem({
-    required String title,
-    required Function() onTap,
-    required bool isSelectedIndex,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          gradient:
-              isSelectedIndex
-                  ? LinearGradient(
-                    colors: [
-                      AppColors.primaryNormal,
-                      AppColors.secondaryNormal,
-                    ],
-                  )
-                  : null,
-        ),
-        child: Text(
-          title,
-          style: getBoldStyle(
-            size: 14,
-            color: isSelectedIndex ? AppColors.white : AppColors.font01,
-          ),
-        ),
       ),
     );
   }
