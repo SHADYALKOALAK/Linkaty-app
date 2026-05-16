@@ -15,6 +15,7 @@ class EmployeeItemCard extends StatefulWidget {
   final String employeeLocation;
   final String employeeJob;
   final String employeeDescription;
+  final bool isVerified;
 
   const EmployeeItemCard({
     super.key,
@@ -23,6 +24,7 @@ class EmployeeItemCard extends StatefulWidget {
     required this.employeeLocation,
     required this.employeeJob,
     required this.employeeDescription,
+    this.isVerified = false,
   });
 
   @override
@@ -70,13 +72,24 @@ class _EmployeeItemCardState extends State<EmployeeItemCard> {
                 Row(
                   children: [
                     Expanded(
-                      child: Text(
-                        widget.employeeName,
-                        style: getMediumStyle(
-                          size: 16,
-                          color: AppColors.font02,
-                        ),
-                        overflow: TextOverflow.ellipsis,
+                      child: Row(
+                        children: [
+                          Text(
+                            widget.employeeName,
+                            style: getMediumStyle(
+                              size: 16,
+                              color: AppColors.font02,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          CustomWidthSpacer(width: 8),
+                          if (widget.isVerified)
+                            CustomSvg(
+                              path: AssetsApp.verifiedIcon,
+                              width: 18.w,
+                              height: 18.h,
+                            ),
+                        ],
                       ),
                     ),
                     LocationBadge(location: widget.employeeLocation),

@@ -58,11 +58,11 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                         border: Border.all(color: Colors.white, width: 4.w),
                         image: DecorationImage(
                           image:
-                              (auth.user?.image != null &&
-                                      auth.user!.image!.isNotEmpty)
-                                  ? NetworkImage(auth.user!.image!)
-                                  : const AssetImage(AssetsApp.profileImage)
-                                      as ImageProvider,
+                          (auth.user?.image != null &&
+                              auth.user!.image!.isNotEmpty)
+                              ? NetworkImage(auth.user!.image!)
+                              : const AssetImage(AssetsApp.profileImage)
+                          as ImageProvider,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -84,13 +84,15 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
                     _buildActionIcon(
                       icon: AssetsApp.shareIcon,
                       onTap: () {
-                        final user = context.read<AuthProvider>().user;
+                        final user = context
+                            .read<AuthProvider>()
+                            .user;
                         Share.share(
                           '👤 Profile Linkaty\n'
-                          'Name: ${user?.fullName ?? ''}\n'
-                          'Specialization: ${user?.specialization ?? ''}\n'
-                          'Bio: ${user?.bio ?? ''}\n'
-                          '\n📲 Download Linkaty app',
+                              'Name: ${user?.fullName ?? ''}\n'
+                              'Specialization: ${user?.specialization ?? ''}\n'
+                              'Bio: ${user?.bio ?? ''}\n'
+                              '\n📲 Download Linkaty app',
                         );
                       },
                     ),
@@ -141,12 +143,23 @@ class _ProfileViewState extends State<ProfileView> with NavHelper {
             children: [
               Row(
                 children: [
-                  Text(
-                    auth.user?.fullName ?? '',
-                    style: getBoldStyle(
-                      size: 18,
-                      color: AppColors.primaryNormal,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        auth.user?.fullName ?? '',
+                        style: getBoldStyle(
+                          size: 18,
+                          color: AppColors.primaryNormal,
+                        ),
+                      ),
+                      if (auth.user?.isVerified ?? false)
+                      CustomWidthSpacer(width: 8),
+                      CustomSvg(
+                        path: AssetsApp.verifiedIcon,
+                        width: 18.w,
+                        height: 18.h,
+                      ),
+                    ],
                   ),
                   const Spacer(),
                   LocationBadge(location: auth.user?.location ?? ''),

@@ -8,6 +8,7 @@ class UserModel {
   String? location;
   String? specialization;
   bool? is_profile_active;
+  bool? isVerified;
 
   UserModel({
     this.id,
@@ -19,6 +20,7 @@ class UserModel {
     this.location,
     this.specialization,
     this.is_profile_active = false,
+    this.isVerified = false,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class UserModel {
     location = json['location'];
     specialization = json['specialization'];
     is_profile_active = json['is_profile_active'];
+    isVerified = json['isVerified'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +47,7 @@ class UserModel {
     json['location'] = location;
     json['specialization'] = specialization;
     json['is_profile_active'] = is_profile_active;
+    json['isVerified'] = isVerified;
     return json;
   }
 }

@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:linkaty/core/constants/assets_app.dart';
 import 'package:linkaty/core/helpers/nav_helper.dart';
 import 'package:linkaty/core/l10n/app_localizations.dart';
-import 'package:linkaty/core/theme/app_colors.dart';
-import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_app_bar.dart';
 import 'package:linkaty/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
@@ -157,6 +155,7 @@ class _SearchScreenState extends State<SearchScreen> with NavHelper {
             employeeLocation: user.location ?? '',
             employeeDescription: user.bio ?? '',
             employeeJob: user.specialization ?? '',
+            isVerified: user.isVerified == true,
           ),
         );
       },

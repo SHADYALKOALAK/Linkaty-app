@@ -41,5 +41,6 @@ class AssetsApp {
   static const String boxEdit = 'assets/icons/box_edit.svg';
   static const String menuDots = 'assets/icons/menu_dots.svg';
   static const String linkIcon = 'assets/icons/link_icon.svg';
+  static const String verifiedIcon = 'assets/icons/verified_icon.svg';
 
 }

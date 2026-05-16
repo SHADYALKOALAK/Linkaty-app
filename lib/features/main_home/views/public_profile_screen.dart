@@ -7,6 +7,7 @@ import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/core/theme/app_text_styles.dart';
 import 'package:linkaty/core/widgets/custom_app_bar.dart';
 import 'package:linkaty/core/widgets/custom_height_spacer.dart';
+import 'package:linkaty/core/widgets/custom_svg.dart';
 import 'package:linkaty/core/widgets/custom_width_spacer.dart';
 import 'package:linkaty/core/widgets/my_button.dart';
 import 'package:linkaty/core/widgets/row_info_profile.dart';
@@ -87,9 +88,22 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
       children: [
         Row(
           children: [
-            Text(
-              user.fullName ?? '',
-              style: getBoldStyle(size: 18, color: AppColors.primaryNormal),
+            Row(
+              children: [
+                Text(
+                  user.fullName ?? '',
+                  style: getBoldStyle(size: 18, color: AppColors.primaryNormal),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                CustomWidthSpacer(width: 8),
+                if (user.isVerified ?? false)
+                  CustomSvg(
+                    path: AssetsApp.verifiedIcon,
+                    width: 18.w,
+                    height: 18.h,
+                  ),
+              ],
             ),
             const Spacer(),
             LocationBadge(location: user.location ?? ''),
@@ -209,11 +223,11 @@ class _PublicProfileScreenState extends State<PublicProfileScreen> {
 
     Share.share(
       '👤 Profile Linkaty\n'
-          'Name: $name\n'
-          'Email: $email\n'
-          'Specialization: $specialization\n'
-          'Bio: $bio\n'
-          '\n📲 Download Linkaty app',
+      'Name: $name\n'
+      'Email: $email\n'
+      'Specialization: $specialization\n'
+      'Bio: $bio\n'
+      '\n📲 Download Linkaty app',
     );
   }
 }

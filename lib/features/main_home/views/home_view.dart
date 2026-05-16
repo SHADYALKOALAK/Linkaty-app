@@ -172,13 +172,15 @@ class _HomeViewState extends State<HomeView> with NavHelper, ChickData {
               final user = provider.users[index];
 
               return GestureDetector(
-                onTap: () => jump(context, PublicProfileScreen(user: user), false),
+                onTap:
+                    () => jump(context, PublicProfileScreen(user: user), false),
                 child: EmployeeItemCard(
                   employeeImage: user.image ?? '',
                   employeeName: user.fullName ?? '',
                   employeeLocation: user.location ?? '',
                   employeeDescription: user.bio ?? '',
                   employeeJob: user.specialization ?? '',
+                  isVerified: user.isVerified == true,
                 ),
               );
             },
