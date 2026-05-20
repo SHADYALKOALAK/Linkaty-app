@@ -108,7 +108,8 @@ class UserService {
           location,
           bio,
           specialization,
-          isVerified
+          isVerified,
+          typeOfJop
         ''')
           .eq('is_profile_active', true)
           .ilike('fullName', '%$query%');

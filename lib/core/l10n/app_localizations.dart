@@ -700,6 +700,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'لم نتمكن من العثور على أي مستخدم مطابق لعملية البحث. جرّب استخدام كلمات مختلفة أو تأكد من صحة الإملاء'**
   String get we_couldnt_find_it;
+
+  /// No description provided for @create_a_new_password.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنشاء كلمة مرور جديدة'**
+  String get create_a_new_password;
+
+  /// No description provided for @enter_your_new_password_and_confirm_it.
+  ///
+  /// In ar, this message translates to:
+  /// **'أدخل كلمة المرور الجديدة وقم بتأكيدها'**
+  String get enter_your_new_password_and_confirm_it;
+
+  /// No description provided for @new_password.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلمة المرور الجديدة'**
+  String get new_password;
+
+  /// No description provided for @password_updated_successfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تحديث كلمة المرور بنجاح'**
+  String get password_updated_successfully;
+
+  /// No description provided for @this_email_address_is_not_registered.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا البريد الإلكتروني غير مسجل'**
+  String get this_email_address_is_not_registered;
 }
 
 class _AppLocalizationsDelegate

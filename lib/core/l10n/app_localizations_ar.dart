@@ -326,4 +326,21 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get we_couldnt_find_it =>
       'لم نتمكن من العثور على أي مستخدم مطابق لعملية البحث. جرّب استخدام كلمات مختلفة أو تأكد من صحة الإملاء';
+
+  @override
+  String get create_a_new_password => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get enter_your_new_password_and_confirm_it =>
+      'أدخل كلمة المرور الجديدة وقم بتأكيدها';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get password_updated_successfully => 'تم تحديث كلمة المرور بنجاح';
+
+  @override
+  String get this_email_address_is_not_registered =>
+      'هذا البريد الإلكتروني غير مسجل';
 }

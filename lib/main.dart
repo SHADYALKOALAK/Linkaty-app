@@ -7,10 +7,14 @@ import 'package:linkaty/core/services/cache/app_preferences.dart';
 import 'package:linkaty/core/services/providers/language_provider.dart';
 import 'package:linkaty/core/theme/app_colors.dart';
 import 'package:linkaty/features/auth/providers/auth_provider.dart';
+import 'package:linkaty/features/auth/views/create_new_password_screen.dart';
 import 'package:linkaty/features/get_started/views/splash_screen.dart';
 import 'package:linkaty/features/main_home/providers/users_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+/// 🔥 مهم للتنقل من أي مكان (حتى من Supabase events)
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +28,15 @@ void main() async {
     anonKey: ApiConstants.apiKey,
   );
 
+  ///  listen for password recovery link
+  Supabase.instance.client.auth.onAuthStateChange.listen((data) {
+    final event = data.event;
+
+    if (event == AuthChangeEvent.passwordRecovery) {
+      navigatorKey.currentState?.pushNamed('/create-new-password');
+    }
+  });
+
   /// Initialize system ui
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -33,7 +46,8 @@ void main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
-  runApp(MyApp());
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -65,6 +79,7 @@ class MyMaterialApp extends StatelessWidget {
     return Consumer<LanguageProvider>(
       builder: (context, lang, child) {
         return MaterialApp(
+          navigatorKey: navigatorKey,
           theme: ThemeData(
             fontFamily: 'ibmPlexSansArabic',
             primaryColor: AppColors.primaryNormal,
@@ -72,11 +87,24 @@ class MyMaterialApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             highlightColor: Colors.transparent,
           ),
+
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+
+          routes: {
+            '/create-new-password': (context) =>
+            const CreateNewPasswordScreen(),
+          },
+
+          home: const SplashScreen(),
+
           locale: Locale(lang.language),
+
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: const [Locale('ar'), Locale('en')],
+
+          supportedLocales: const [
+            Locale('ar'),
+            Locale('en'),
+          ],
         );
       },
     );

@@ -14,28 +14,32 @@ import 'package:linkaty/features/auth/services/auth_service.dart';
 import 'package:linkaty/features/auth/widgets/auth_heder_section.dart';
 import 'package:linkaty/features/auth/widgets/bg_image_widget.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class CreateNewPasswordScreen extends StatefulWidget {
+  const CreateNewPasswordScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<CreateNewPasswordScreen> createState() =>
+      _CreateNewPasswordScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen>
+class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen>
     with CheckerHelper, ChickData {
-  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _confirmPasswordController;
 
   bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -47,10 +51,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
         children: [
           BgImageWidget(),
           AuthHeaderSection(
-            title: localizations.forgot_password,
-            subtitle:
-                localizations
-                    .enter_your_email_address_and_we_will_send_you_a_link_to_reset_your_password,
+            title: localizations.create_a_new_password,
+            subtitle: localizations.enter_your_new_password_and_confirm_it,
             logoAsset: AssetsApp.logoWhite,
           ),
           resetPasswordContent(localizations),
@@ -81,8 +83,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
           ),
           child: SingleChildScrollView(
             child: Column(
+              spacing: 16.h,
               children: [
-                CustomHeightSpacer(height: 12),
                 Container(
                   width: 60.w,
                   height: 4.h,
@@ -91,14 +93,24 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
                     borderRadius: BorderRadius.circular(50.r),
                   ),
                 ),
-                CustomHeightSpacer(height: 24),
+                CustomHeightSpacer(height: 8),
                 MyTextField(
-                  hintText: 'أدخل بريدك الإلكتروني',
-                  controller: _emailController,
-                  label: localizations.email,
+                  hintText: 'أدخل كلمة المرور الجديدة',
+                  controller: _passwordController,
+                  label: localizations.new_password,
                   isRequired: true,
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: CustomSvg(path: AssetsApp.email),
+                  keyboardType: TextInputType.visiblePassword,
+                  prefixIcon: CustomSvg(path: AssetsApp.lock),
+                  obscureText: true,
+                ),
+                MyTextField(
+                  hintText: 'أدخل تأكيد كلمة المرور',
+                  controller: _confirmPasswordController,
+                  label: localizations.confirm_password,
+                  isRequired: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  prefixIcon: CustomSvg(path: AssetsApp.lock),
+                  obscureText: true,
                 ),
                 CustomHeightSpacer(height: 16),
                 _isLoading == true
@@ -116,84 +128,71 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
   }
 
   bool _checkDataForm(AppLocalizations localizations) {
-    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
 
-    if (email.isEmpty) {
+    if (password.isEmpty) {
       showSnackBar(
         context,
-        localizations.please_enter_your_email,
+        localizations.please_enter_your_password,
         AppColors.error,
       );
       return false;
     }
 
-    if (!checkEmail(email)) {
+    if (password.length < 6) {
       showSnackBar(
         context,
-        localizations.please_enter_your_email_address_correctly,
+        localizations
+            .the_password_is_weak_it_must_contain_at_least_6_characters,
         AppColors.error,
       );
       return false;
     }
+    if (confirmPassword.isEmpty) {
+      showSnackBar(
+        context,
+        localizations.please_confirm_your_password,
+        AppColors.error,
+      );
+      return false;
+    }
+    if (password != confirmPassword) {
+      showSnackBar(
+        context,
+        localizations.please_enter_the_same_password_in_both_fields,
+        AppColors.error,
+      );
+      return false;
+    }
+
     return true;
   }
 
   Future<void> resetPassword(AppLocalizations localizations) async {
-    final String email = _emailController.text.trim();
-
+    final String newPassword = _passwordController.text;
     if (!_checkDataForm(localizations)) return;
 
     setState(() => _isLoading = true);
 
     try {
-      bool isResetPassword =
-      await AuthService().resetPassword(email: email);
-
+      bool isResetPassword = await AuthService().updatePassword(
+        newPassword: newPassword,
+      );
       if (isResetPassword) {
         showSnackBar(
           context,
-          localizations.a_password_reset_link_has_been_sent_to_your_email_successfully,
+          localizations.password_updated_successfully,
           AppColors.success,
         );
-
         Navigator.pop(context);
-      } else {
-        showSnackBar(
-          context,
-          localizations.this_email_address_is_not_registered,
-          AppColors.error,
-        );
       }
     } catch (e) {
-      showSnackBar(
-        context,
-        _mapAuthError(e, localizations),
-        AppColors.error,
-      );
+      showSnackBar(context, e.toString(), AppColors.error);
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
       }
     }
-  }  String _mapAuthError(dynamic e, AppLocalizations localizations) {
-    final error = e.toString().toLowerCase();
-
-    if (error.contains('invalid login credentials')) {
-      return localizations.invalid_login_credentials;
-    }
-
-    if (error.contains('email not confirmed')) {
-      return localizations.email_not_confirmed;
-    }
-
-    if (error.contains('user not found')) {
-      return localizations.user_not_found;
-    }
-
-    if (error.contains('network')) {
-      return localizations.network_error;
-    }
-
-    return localizations.unexpected_error;
   }
 }

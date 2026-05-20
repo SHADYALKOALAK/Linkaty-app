@@ -280,14 +280,12 @@ class _EditProfileScreenState extends State<EditProfileScreen>
         bio: _bioController.text,
         email: user?.email ?? '',
         image: imageUrl ?? user?.image,
+       isVerified: user?.isVerified ?? false,
       );
       bool isUpdated = await UserService().updateUser(updatedUser);
 
       if (isUpdated && mounted) {
-        Provider.of<AuthProvider>(
-          context,
-          listen: false,
-        ).setUser(updatedUser);
+        Provider.of<AuthProvider>(context, listen: false).setUser(updatedUser);
         showSnackBar(
           context,
           localizations.data_updated_successfully,

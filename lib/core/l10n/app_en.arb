@@ -98,7 +98,15 @@
   "send_a_massage": "Send a massage",
   "share_a_user": "Share a user",
   "no_results_found": "No results found",
-  "we_couldnt_find_it": "We couldn't find any users matching your search. Try using different keywords or double-check your spelling"
+  "we_couldnt_find_it": "We couldn't find any users matching your search. Try using different keywords or double-check your spelling",
+  "create_a_new_password": "Create a new password",
+  "enter_your_new_password_and_confirm_it": "Enter your new password and confirm it",
+  "new_password": "New password",
+  "password_updated_successfully": "Password updated successfully",
+  "this_email_address_is_not_registered": "This email address is not registered"
+
+
+
 
 
 

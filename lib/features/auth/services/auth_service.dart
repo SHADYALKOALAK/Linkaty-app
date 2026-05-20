@@ -36,15 +36,42 @@ class AuthService {
       rethrow;
     }
   }
+  Future<bool> checkEmailExists(String email) async {
+    final response = await _supabase
+        .from('Users')
+        .select('id')
+        .eq('email', email)
+        .maybeSingle();
 
-  /// reset password by send link
-  Future<bool> resetPassword({required String emil}) async {
+    return response != null;
+  }
+
+  Future<bool> resetPassword({required String email}) async {
+    final exists = await checkEmailExists(email);
+
+    if (!exists) {
+      return false;
+    }
+
+    await _supabase.auth.resetPasswordForEmail(
+      email,
+      redirectTo: 'com.linkaty.app://login-callback',
+    );
+
+    return true;
+  }
+  Future<bool> updatePassword({required String newPassword}) async {
     try {
-      await _supabase.auth.resetPasswordForEmail(emil);
+      await Supabase.instance.client.auth.updateUser(
+        UserAttributes(
+          password: newPassword,
+        ),
+      );
+
+      print('Password updated successfully');
       return true;
     } catch (e) {
-      print(e.toString());
-      rethrow;
+      print('Update Password Error: $e');
+      return false;
     }
-  }
-}
+  }}

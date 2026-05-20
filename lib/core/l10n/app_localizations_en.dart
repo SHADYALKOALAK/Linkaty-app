@@ -330,4 +330,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get we_couldnt_find_it =>
       'We couldn\'t find any users matching your search. Try using different keywords or double-check your spelling';
+
+  @override
+  String get create_a_new_password => 'Create a new password';
+
+  @override
+  String get enter_your_new_password_and_confirm_it =>
+      'Enter your new password and confirm it';
+
+  @override
+  String get new_password => 'New password';
+
+  @override
+  String get password_updated_successfully => 'Password updated successfully';
+
+  @override
+  String get this_email_address_is_not_registered =>
+      'This email address is not registered';
 }
