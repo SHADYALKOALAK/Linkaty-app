@@ -323,7 +323,7 @@ abstract class AppLocalizations {
   /// No description provided for @signup_success.
   ///
   /// In ar, this message translates to:
-  /// **'تم إنشاء الحساب بنجاح'**
+  /// **'تم إنشاء الحساب بنجاح، يرجى تأكيد بريدك الإلكتروني من خلال الرسالة التي تم إرسالها إلى بريدك الإلكتروني لإكمال عملية تسجيل الدخول'**
   String get signup_success;
 
   /// No description provided for @did_you_forget_your_password.
@@ -730,6 +730,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'هذا البريد الإلكتروني غير مسجل'**
   String get this_email_address_is_not_registered;
+
+  /// No description provided for @please_confirm_your_email_address_before_logging_in.
+  ///
+  /// In ar, this message translates to:
+  /// **'يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول'**
+  String get please_confirm_your_email_address_before_logging_in;
+
+  /// No description provided for @this_email_address_is_already_registered.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا البريد الإلكتروني مسجل مسبقاً'**
+  String get this_email_address_is_already_registered;
 }
 
 class _AppLocalizationsDelegate

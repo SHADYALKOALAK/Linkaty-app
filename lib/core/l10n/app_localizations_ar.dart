@@ -127,7 +127,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_success => 'تم تسجيل الدخول بنجاح';
 
   @override
-  String get signup_success => 'تم إنشاء الحساب بنجاح';
+  String get signup_success =>
+      'تم إنشاء الحساب بنجاح، يرجى تأكيد بريدك الإلكتروني من خلال الرسالة التي تم إرسالها إلى بريدك الإلكتروني لإكمال عملية تسجيل الدخول';
 
   @override
   String get did_you_forget_your_password => 'هل نسيت كلمة المرور؟';
@@ -343,4 +344,12 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get this_email_address_is_not_registered =>
       'هذا البريد الإلكتروني غير مسجل';
+
+  @override
+  String get please_confirm_your_email_address_before_logging_in =>
+      'يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول';
+
+  @override
+  String get this_email_address_is_already_registered =>
+      'هذا البريد الإلكتروني مسجل مسبقاً';
 }

@@ -232,7 +232,6 @@ class _LoginScreenState extends State<LoginScreen>
         throw Exception('Auth Error');
       }
 
-      // 🔥 GET REAL USER FROM DB (IMPORTANT FIX)
       final fullUser = await UserService().getUserByEmail(email: email);
 
       if (fullUser.role == 'admin') {

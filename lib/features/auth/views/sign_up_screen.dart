@@ -256,8 +256,23 @@ class _SignUpScreenState extends State<SignUpScreen>
       final email = _emailController.text.trim();
       final password = _passwordController.text;
 
-      final AuthResponse response = await AuthService()
-          .signUpWithEmailAndPassword(email: email, password: password);
+      final bool emailExists = await AuthService().checkEmailExists(email);
+
+      if (emailExists) {
+        showSnackBar(
+          context,
+          localizations.this_email_address_is_already_registered,
+          AppColors.error,
+        );
+        return;
+      }
+
+      // 2. إنشاء حساب
+      final AuthResponse response =
+      await AuthService().signUpWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       final user = response.user;
 

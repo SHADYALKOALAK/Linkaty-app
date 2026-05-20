@@ -128,7 +128,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_success => 'Login successful';
 
   @override
-  String get signup_success => 'Account created successfully';
+  String get signup_success =>
+      'Your account has been successfully created. Please confirm your email address via the message sent to your email to complete the login process';
 
   @override
   String get did_you_forget_your_password => 'Did you forget your password?';
@@ -347,4 +348,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get this_email_address_is_not_registered =>
       'This email address is not registered';
+
+  @override
+  String get please_confirm_your_email_address_before_logging_in =>
+      'Please confirm your email address before logging in';
+
+  @override
+  String get this_email_address_is_already_registered =>
+      'This email address is already registered';
 }
