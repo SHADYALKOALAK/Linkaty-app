@@ -248,66 +248,6 @@ class _SignUpScreenState extends State<SignUpScreen>
     return true;
   }
 
-  // Future<void> signUp(AppLocalizations localizations) async {
-  //   if (!_checkDataForm(localizations)) return;
-  //
-  //   setState(() => _isLoading = true);
-  //
-  //   try {
-  //     final email = _emailController.text.trim();
-  //     final password = _passwordController.text;
-  //
-  //     final bool emailExists = await AuthService().checkEmailExists(email);
-  //
-  //     if (emailExists) {
-  //       showSnackBar(
-  //         context,
-  //         localizations.this_email_address_is_already_registered,
-  //         AppColors.error,
-  //       );
-  //       return;
-  //     }
-  //
-  //     final AuthResponse response = await AuthService()
-  //         .signUpWithEmailAndPassword(email: email, password: password);
-  //
-  //     final user = response.user;
-  //
-  //     if (user == null) {
-  //       throw Exception("User creation failed");
-  //     }
-  //
-  //     UserModel newUser = UserModel(
-  //       id: user.id,
-  //       fullName: _nameController.text,
-  //       email: email,
-  //       is_profile_active: false,
-  //       isVerified: false,
-  //     );
-  //
-  //     final bool isCreated = await UserService().createUser(newUser);
-  //
-  //     if (!isCreated) {
-  //       throw Exception("Failed to create user in database");
-  //     }
-  //
-  //     if (!mounted) return;
-  //     jump(context, LoginScreen(), true);
-  //     showSnackBar(context, localizations.signup_success, AppColors.success);
-  //
-  //   } catch (e, stackTrace) {
-  //     debugPrint("SIGNUP ERROR: $e");
-  //     debugPrint("STACKTRACE: $stackTrace");
-  //
-  //     if (mounted) {
-  //       showSnackBar(context, e.toString(), AppColors.error);
-  //     }
-  //   } finally {
-  //     if (mounted) {
-  //       setState(() => _isLoading = false);
-  //     }
-  //   }
-  // }
   Future<void> signUp(AppLocalizations localizations) async {
     if (!_checkDataForm(localizations)) return;
 
